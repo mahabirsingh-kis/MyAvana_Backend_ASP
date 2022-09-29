@@ -1,0 +1,124 @@
+[Unit]
+Description=Example .NET Web API App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/www/gateway
+ExecStart=/usr/bin/dotnet /var/www/gateway/MyAvana.Gateway.Api.dll
+Restart=always
+RestartSec=10
+# Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=UserPanelLog
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+[Unit]
+Description=Example .NET Web API App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/www/auth
+ExecStart=/usr/bin/dotnet /var/www/auth/MyAvana.Auth.Api.dll
+Restart=always
+RestartSec=10
+# Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=UserPanelLog
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+[Unit]
+Description=Example .NET Web API App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/crm/auth
+ExecStart=/usr/bin/dotnet /var/www/crm/MyAvana.CRM.Api.dll
+Restart=always
+RestartSec=10
+# Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=UserPanelLog
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+[Unit]
+Description=Example .NET Web API App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/payments/auth
+ExecStart=/usr/bin/dotnet /var/www/payments/MyAvana.Payments.Api.dll
+Restart=always
+RestartSec=10
+# Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=UserPanelLog
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Example .NET Web API App running on Ubuntu
+
+[Service]
+WorkingDirectory=/var/imageai/auth
+ExecStart=/usr/bin/dotnet /var/www/imageai/MyAvana.AI.Api.dll
+Restart=always
+RestartSec=10
+# Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=UserPanelLog
+User=ubuntu
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+server {
+
+	server_name api.myavana.com;
+
+	root /var/www/gateway;
+	#index index.html;
+
+	location / {
+		#try_files $uri $uri/ =404;
+		#proxy_pass http://localhost:36115;
+	        proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+	        proxy_set_header Connection keep-alive;
+	        proxy_set_header Host $http_host;
+	        proxy_set_header X-Real-IP $remote_addr;
+	        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	        proxy_set_header X-Forwarded-Proto $scheme;
+	        proxy_cache_bypass $http_upgrade;
+		proxy_pass http://localhost:5000;
+
+	}
+
+
+}
+
+
+
+
+	
+

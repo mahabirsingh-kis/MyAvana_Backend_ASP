@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200824153431_blogB.cs" />
+    <Compile Remove="Migrations\20200824153431_blogB.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="2.8.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
+    <PackageReference Include="Twilio" Version="5.68.1" />
+    <PackageReference Include="ZendeskApi_v2" Version="3.10.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyAvana.DAL\MyAvana.DAL.csproj" />
+    <ProjectReference Include="..\MyAvana.EmailService\MyAvana.EmailService.csproj" />
+    <ProjectReference Include="..\MyAvana.Logger\MyAvana.Logger.csproj" />
+    <ProjectReference Include="..\MyAvana.TokenService\MyAvana.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="hairProfile\" />
+    <Folder Include="Resources\Images\" />
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
+</Project>
